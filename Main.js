@@ -1,10 +1,12 @@
 import { LoadImage } from "./LoadAssets.js";
+import { SetupControls } from "./Controls.js";
 
 var canvas = document.createElement("canvas");
 canvas.height = 360;
 canvas.width = 640;
 document.body.appendChild(canvas);
 var context = canvas.getContext("2d");
+SetupControls();
 
 (async () => {
   let playerImage = await LoadImage("assets/Player.png");
