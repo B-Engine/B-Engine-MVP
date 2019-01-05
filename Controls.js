@@ -1,31 +1,36 @@
-export CONTROLS = {
-	UP: 'w',
-	DOWN: 's',
-	LEFT: 'a',
-	RIGHT: 'd',
-	FIRE: ' '
+export const CONTROLS = {
+  UP: "w",
+  DOWN: "s",
+  LEFT: "a",
+  RIGHT: "d",
+  FIRE: " "
+};
+
+const _controlCallbacks = {};
+for (const key in CONTROLS) {
+  _controlCallbacks[CONTROLS[key]] = [];
+}
+
+export function AddEventCallback(ControlName, callback) {
+  if (
+    _controlCallbacks[ControlName] == null ||
+    _controlCallbacks[ControlName] == undefined
+  ) {
+    throw new Error(ControlName + " is not a valid control");
+  }
+
+  _controlCallbacks[ControlName].push(callback);
 }
 
 export function SetupControls() {
-
-    document.addEventListener('keydown', function(event) {
-        if(event.key == controls.LEFT) {
-            alert('Left was pressed');
-        }
-        if(event.key == controls.RIGHT) {
-            alert('Right was pressed');
-        }
-        if(event.key == controls.UP) {
-            alert('Up was pressed');
-        }
-        if(event.key == controls.DOWN) {
-            alert('Down was pressed');
-        }
-        if(event.key == controls.FIRE) {
-            alert('Space was pressed');
-        }
-    });
-
+  document.addEventListener("keydown", function(event) {
+    for (const key in _controlCallbacks) {
+      if (event.key == key) {
+        _controlCallbacks[key].forEach(callback => callback());
+        return;
+      }
+    }
+  });
 }
 
 export default CONTROLS;
