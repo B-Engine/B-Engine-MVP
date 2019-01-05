@@ -28,7 +28,6 @@ class Player {
 		this.position = new Vector2(x, y);
 	}
 	update() {
-		if (true) {} else {}
 		context.drawImage(
 			this.image, 
 			this.position.x, 
@@ -39,5 +38,4 @@ class Player {
 
 var player1 = new Player(playerImage, 10, 10);
 player1.update();
-
 })()
