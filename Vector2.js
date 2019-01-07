@@ -3,7 +3,7 @@ export default class Vector2 {
     this.x = x;
     this.y = y;
   }
-  
+
   static down() {
     return new Vector2(0, -1);
   }

@@ -12,5 +12,5 @@ SetupControls();
   let playerImage = await LoadImage("assets/Player.png");
 
   var player1 = new Player(playerImage, 10, 10);
-  player1.update();
+  //player1.update();
 })();

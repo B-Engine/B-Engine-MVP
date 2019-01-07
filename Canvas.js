@@ -15,6 +15,10 @@ export default class Canvas {
     this._context.clearRect(0, 0, this._canvas.width, this._canvas.height);
   }
 
+  SetBackground(image) {
+    this.background = image;
+  }
+
   RenderEntities(entitiesList) {
     this._clearScreen();
     entitiesList.forEach(entity =>
