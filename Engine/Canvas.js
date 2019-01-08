@@ -2,11 +2,7 @@ import Entity from "./Entity";
 import Vector2 from "./Vector2";
 
 export default class Canvas {
-  /**
-   * @param {number} width
-   * @param {number} height
-   */
-  constructor(width, height) {
+  constructor() {
     let canvas = document.createElement("canvas");
     document.body.style.display = "flex";
     let div = document.createElement("div");
