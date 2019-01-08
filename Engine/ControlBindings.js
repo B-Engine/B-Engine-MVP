@@ -24,15 +24,15 @@ export const CONTROLS = {
  */
 const _controlCallbacks = {};
 for (const key in CONTROLS) {
-  _controlCallbacks[CONTROLS[key]] = [];
+  _controlCallbacks[key] = [];
 }
 
 /**
  * @param {keyof CONTROLS} ControlName
  * @param {() => void} callback
- * @returns void
+ * @returns {void}
  */
-export function AddEventCallback(ControlName, callback) {
+export function AddControlEvent(ControlName, callback) {
   if (
     _controlCallbacks[ControlName] == null ||
     _controlCallbacks[ControlName] == undefined
@@ -44,12 +44,12 @@ export function AddEventCallback(ControlName, callback) {
 }
 
 /**
- * @returns void
+ * @returns {void}
  */
 export function SetupControls() {
   document.addEventListener("keydown", function(event) {
     for (const key in _controlCallbacks) {
-      if (event.key == key) {
+      if (event.key == CONTROLS[key]) {
         _controlCallbacks[key].forEach(
           /**
            * @param {() => void} callback
@@ -62,4 +62,8 @@ export function SetupControls() {
   });
 }
 
-export default CONTROLS;
+export default {
+  CONTROLS: CONTROLS,
+  SetupControls: SetupControls,
+  AddControlEvent: AddControlEvent
+};

@@ -16,8 +16,8 @@ export function LoadImage(imageSrc) {
  * @param {{ map: (images: (element: string) => PromiseLike<HTMLImageElement>) => HTMLImageElement[]; }} images
  * @returns {HTMLImageElement[]}
  */
-export function LoadAssets(images) {
+export function LoadImages(images) {
   return images.map(element => LoadImage(element));
 }
 
-export default LoadAssets;
+export default LoadImages;

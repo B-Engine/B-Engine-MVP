@@ -2,12 +2,6 @@ import Vector2 from "./Vector2";
 import BoundingBox from "./BoundingBox";
 
 export default class Entity {
-  /** @type {HTMLImageElement} */
-  image;
-  /** @type {Vector2} */
-  position;
-  /** @type {BoundingBox} */
-  bounds;
   /**
    * @param {HTMLImageElement} image
    * @param {Vector2} position
@@ -27,8 +21,33 @@ export default class Entity {
     if (!(bounds instanceof BoundingBox)) {
       throw new Error(position + " is not a valid BoundingBox");
     }
+    /** @type {HTMLImageElement} */
     this.image = image;
+    /** @type {Vector2} */
     this.position = position;
+    /** @type {Vector2} */
+    this.lastPosition = position;
+    /** @type {BoundingBox} */
     this.bounds = bounds;
+    /** @type {boolean} */
+    this.usesVelocity = false;
+    /** @type {Vector2} */
+    this.velocity = Vector2.zero();
+  }
+
+  /**
+   * @param {Vector2} newPosition
+   */
+  set Position(newPosition) {
+    this.lastPosition = this.position;
+    this.position = newPosition;
+    this.bounds = new BoundingBox(this.position, this.bounds.size);
+  }
+
+  /**
+   * @returns {Vector2}
+   */
+  get Position() {
+    return this.position;
   }
 }

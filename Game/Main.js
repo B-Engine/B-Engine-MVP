@@ -1,16 +1,22 @@
-import { LoadImage } from "../Engine/LoadAssets";
-import { SetupControls } from "Engine/Controls";
-import Player from "./Player.js";
+import { LoadImage } from "Engine/ImageLoader";
+import { SetupControls } from "Engine/ControlBindings";
+import Player from "./Player";
+import Vector2 from "Engine/Vector2";
+import Canvas from "Engine/Canvas";
+import { EntityPipeline } from "Engine/EntityPipeline";
 
-var canvas = document.createElement("canvas");
-canvas.height = 360;
-canvas.width = 640;
-document.body.appendChild(canvas);
+// @ts-ignore
+let canvas = new Canvas();
+let pipeline = new EntityPipeline(canvas);
 SetupControls();
 
 (async () => {
-  let playerImage = await LoadImage("assets/Player.png");
+  var player1 = new Player(
+    await LoadImage("assets/Player.png"),
+    new Vector2(10, 10)
+  );
 
-  var player1 = new Player(playerImage, 10, 10);
-  //player1.update();
+  player1.usesVelocity = true;
+  pipeline.AddEntity(player1);
+  pipeline.BeginProcessing();
 })();

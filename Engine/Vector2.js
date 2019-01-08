@@ -73,6 +73,19 @@ export default class Vector2 {
       throw new Error(other + " is not a valid Vector2");
     }
   }
+
+  /**
+   *
+   * @param {number} multiplier
+   * @returns {Vector2}
+   */
+  multiply(multiplier) {
+    if (typeof multiplier != "number") {
+      throw new Error(multiplier + " is not a valid number");
+    }
+    return new Vector2(this.x * multiplier, this.y * multiplier);
+  }
+
   /**
    *
    * @param {Vector2} other

@@ -5,7 +5,7 @@ const CleanWebpackPlugin = require("clean-webpack-plugin");
 const DashboardPlugin = require("webpack-dashboard/plugin");
 
 module.exports = {
-  entry: ["@babel/polyfill", "./Engine/index.js", "./Game/Main.js"],
+  entry: ["@babel/polyfill", "./Game/Main.js"],
   mode: "development",
   plugins: [
     new CleanWebpackPlugin(["dist"]),
@@ -20,7 +20,11 @@ module.exports = {
     filename: "[name].[contenthash].js"
   },
   resolve: {
-    extensions: [".js"]
+    extensions: [".js"],
+    alias: {
+      Engine: path.resolve(__dirname, "./Engine/"),
+      Game: path.resolve(__dirname, "./Game/")
+    }
   },
   devtool: "eval-source-map",
   module: {
