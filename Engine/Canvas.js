@@ -1,4 +1,8 @@
 export default class Canvas {
+  /**
+   * @param {number} width
+   * @param {number} height
+   */
   constructor(width, height) {
     let canvas = document.createElement("canvas");
     canvas.height = width || 360;
@@ -15,18 +19,28 @@ export default class Canvas {
     this._context.clearRect(0, 0, this._canvas.width, this._canvas.height);
   }
 
+  /**
+   * @param {HTMLImageElement} image
+   */
   SetBackground(image) {
     this.background = image;
   }
 
+  /**
+   * @param {{ forEach: (arg0: (entity: any) => void) => void; }} entitiesList
+   */
   RenderEntities(entitiesList) {
     this._clearScreen();
-    entitiesList.forEach(entity =>
-      this._context.drawImage(
-        entity.image,
-        entity.position.x,
-        entity.position.y
-      )
+    entitiesList.forEach(
+      /**
+       * @param {{ image: CanvasImageSource; position: { x: number; y: number; }; }} entity
+       */
+      entity =>
+        this._context.drawImage(
+          entity.image,
+          entity.position.x,
+          entity.position.y
+        )
     );
   }
 }

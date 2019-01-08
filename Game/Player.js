@@ -1,9 +1,9 @@
-import Vector2 from "./Vector2";
-import Entity from "./Engine/Entity";
+import Vector2 from "../Engine/Vector2";
+import Entity from "../Engine/Entity";
 import {
   AddEventCallback as AddControlEvent,
   CONTROLS
-} from "./Engine/Controls";
+} from "../Engine/Controls";
 
 export default class Player extends Entity {
   constructor(image, x, y) {

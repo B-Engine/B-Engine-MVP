@@ -1,5 +1,9 @@
 "use strict";
 
+/**
+ * @param {string} imageSrc
+ * @returns {Promise<HTMLImageElement>}
+ */
 export function LoadImage(imageSrc) {
   return new Promise((resolve, reject) => {
     let img = new Image();
@@ -8,9 +12,12 @@ export function LoadImage(imageSrc) {
     img.src = imageSrc;
   });
 }
-
+/**
+ * @param {{ map: (images: (element: string) => PromiseLike<HTMLImageElement>) => HTMLImageElement[]; }} images
+ * @returns {HTMLImageElement[]}
+ */
 export function LoadAssets(images) {
-  return images.map(async element => await LoadImage(element));
+  return images.map(element => LoadImage(element));
 }
 
 export default LoadAssets;

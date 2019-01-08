@@ -1,5 +1,5 @@
-import { LoadImage } from "./Engine/LoadAssets.js";
-import { SetupControls } from "./Engine/Controls.js";
+import { LoadImage } from "../Engine/LoadAssets";
+import { SetupControls } from "Engine/Controls";
 import Player from "./Player.js";
 
 var canvas = document.createElement("canvas");

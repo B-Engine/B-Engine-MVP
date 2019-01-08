@@ -1,18 +1,18 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
+//@ts-ignore
 const DashboardPlugin = require("webpack-dashboard/plugin");
 
 module.exports = {
-  entry: ["@babel/polyfill", "./Main.js"],
+  entry: ["@babel/polyfill", "./Engine/index.js", "./Game/Main.js"],
   mode: "development",
   plugins: [
     new CleanWebpackPlugin(["dist"]),
     new DashboardPlugin(),
     new HtmlWebpackPlugin({
       title: "Sideshooter",
-      template: path.resolve(__dirname, "assets/template.html"),
-      minify: true
+      template: path.resolve(__dirname, "assets/template.html")
     })
   ],
   output: {
