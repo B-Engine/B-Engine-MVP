@@ -8,14 +8,14 @@ export default class Canvas {
     let div = document.createElement("div");
     div.style.border = "25px solid black";
     div.style.margin = "auto";
-    div.style.height = "calc(100vh - 50px)";
-    div.style.width = "calc(100vw - 50px)";
+    //div.style.height = "calc(100vh - 50px)";
+    //div.style.width = "calc(100vw - 50px)";
     div.style.flex = "1";
     document.body.appendChild(div);
     div.appendChild(canvas);
 
-    canvas.style.width = "100%";
-    canvas.style.height = "100%";
+    canvas.width = 540;//"100%";
+    canvas.height = 960;//"100%";
     canvas.width = canvas.offsetWidth;
     canvas.height = canvas.offsetHeight;
 
