@@ -127,3 +127,21 @@ export class EntityPipeline {
     });
   }
 }
+
+/** @type {EntityPipeline} */
+let PIPELINE = undefined;
+
+/**
+ * @param {number} fpsMax
+ * @returns {EntityPipeline}
+ */
+export function GetEntityPipeline(fpsMax = 60) {
+  if (PIPELINE != undefined) {
+    return PIPELINE;
+  }
+  let canvas = new Canvas();
+  PIPELINE = new EntityPipeline(canvas, fpsMax);
+  return PIPELINE;
+}
+
+export default GetEntityPipeline;

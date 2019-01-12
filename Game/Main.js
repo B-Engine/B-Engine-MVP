@@ -3,13 +3,13 @@ import { SetupControls } from "Engine/ControlBindings";
 import Player from "./Player";
 import Vector2 from "Engine/Vector2";
 import Canvas from "Engine/Canvas";
-import { EntityPipeline } from "Engine/EntityPipeline";
+import EntityPipeline from "Engine/EntityPipeline";
 import Background from "./Background";
 import Projectile from "./Projectile";
 
 // @ts-ignore
-let canvas = new Canvas();
-let pipeline = new EntityPipeline(canvas);
+let pipeline = EntityPipeline();
+
 SetupControls();
 
 (async () => {
@@ -28,7 +28,6 @@ SetupControls();
   bg.usesVelocity = false;
   pipeline.AddEntity(bg);
 
-  
   var player1 = new Player(
     playerImage,
     new Vector2(238, 832),
@@ -36,7 +35,6 @@ SetupControls();
   );
 
   player1.setAmmo(bulletImage);
-  player1.setPipeline(pipeline);
   player1.usesVelocity = true;
   pipeline.AddEntity(player1);
 
@@ -44,7 +42,7 @@ SetupControls();
     for (let y = 0; y < 3; y++) {
       let enemy = new Projectile(
         enemy01Image,
-        new Vector2(174+x*64, 96+y*64),
+        new Vector2(174 + x * 64, 96 + y * 64),
         new Vector2(enemy01Image.width, enemy01Image.height)
       );
       enemy.usesVelocity = true;
@@ -55,7 +53,7 @@ SetupControls();
   for (let y = 0; y < 2; y++) {
     let enemy = new Projectile(
       enemy02Image,
-      new Vector2(71, 128+y*64),
+      new Vector2(71, 128 + y * 64),
       new Vector2(enemy01Image.width, enemy01Image.height)
     );
     enemy.usesVelocity = true;
@@ -65,13 +63,12 @@ SetupControls();
   for (let y = 0; y < 2; y++) {
     let enemy = new Projectile(
       enemy02Image,
-      new Vector2(405, 128+y*64),
+      new Vector2(405, 128 + y * 64),
       new Vector2(enemy01Image.width, enemy01Image.height)
     );
     enemy.usesVelocity = true;
     pipeline.AddEntity(enemy);
   }
-
 
   pipeline.BeginProcessing();
 })();
